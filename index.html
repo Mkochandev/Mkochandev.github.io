@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Muhammed · Mkochandev</title>
+<meta name="description" content="Laravel, React Native ve Node.js ile gerçek işletmelerin kullandığı web ve mobil uygulamalar geliştiren full-stack geliştirici.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: tek sütunlu okuma akışı; her proje solda künye (durum, yıl, teknoloji), sağda anlatım + ürünün kendi arayüzünden bir kesit. */
+:root {
+  --paper: #F1F3F6;
+  --surface: #FFFFFF;
+  --ink: #131A24;
+  --muted: #586273;
+  --line: #D8DDE5;
+  --accent: #1D4ED8;
+  --accent-soft: #E3E9FB;
+  --signal: #B77900;
+  --signal-soft: #FBF0D6;
+  --ok: #16794A;
+  --ok-soft: #DDF1E6;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --max: 1080px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E131A; --surface: #151C26; --ink: #E6EBF2; --muted: #97A2B3; --line: #273141;
+    --accent: #86A2FF; --accent-soft: #1C2745; --signal: #F0B84A; --signal-soft: #33280F;
+    --ok: #5FD19A; --ok-soft: #12301F; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E131A; --surface: #151C26; --ink: #E6EBF2; --muted: #97A2B3; --line: #273141;
+  --accent: #86A2FF; --accent-soft: #1C2745; --signal: #F0B84A; --signal-soft: #33280F;
+  --ok: #5FD19A; --ok-soft: #12301F; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1rem/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: var(--max); margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.label { font-family: var(--font-mono); font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* Üst şerit */
+.top { border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; padding-block: 18px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--ink); text-decoration: none; }
+.brand span { color: var(--muted); font-weight: 500; }
+.nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .9375rem; }
+.nav a:hover { color: var(--ink); }
+
+/* Giriş */
+.hero { padding-block: clamp(48px, 9vw, 96px) clamp(40px, 6vw, 64px); display: grid; gap: 28px; }
+.hero h1 { font-size: clamp(2.3rem, 6.2vw, 4.4rem); font-weight: 800; letter-spacing: -.025em; max-width: 17ch; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--muted); max-width: 60ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 36px; padding-top: 22px; border-top: 1px solid var(--line); }
+.fact { display: grid; gap: 2px; }
+.fact b { font-family: var(--font-display); font-size: 1.75rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* Bölüm başlıkları */
+.section { padding-block: clamp(40px, 6vw, 72px); }
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; margin-bottom: 28px; }
+.section-head h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; letter-spacing: -.015em; }
+
+/* Proje kartları */
+.projects { display: grid; gap: 22px; }
+.project {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  display: grid; grid-template-columns: 220px minmax(0, 1fr); overflow: hidden;
+}
+.meta { padding: 26px 22px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 18px; }
+.meta dl { margin: 0; display: grid; gap: 14px; }
+.meta dt { margin-bottom: 3px; }
+.meta dd { margin: 0; font-size: .9375rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--font-mono); font-size: .72rem; padding: 3px 8px; border-radius: 6px; background: var(--paper); border: 1px solid var(--line); color: var(--ink); white-space: nowrap; }
+.status { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; font-size: .8125rem; padding: 4px 10px; border-radius: 999px; width: fit-content; }
+.status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.status.live { color: var(--ok); background: var(--ok-soft); }
+.status.near { color: var(--signal); background: var(--signal-soft); }
+.status.done { color: var(--accent); background: var(--accent-soft); }
+.links { display: grid; gap: 6px; margin-top: auto; font-size: .875rem; font-weight: 500; }
+.links a { text-decoration: none; }
+.links a:hover { text-decoration: underline; }
+
+.body { padding: 26px clamp(20px, 3vw, 34px) 30px; display: grid; gap: 18px; min-width: 0; }
+.body h3 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); font-weight: 700; letter-spacing: -.01em; }
+.body h3 small { display: block; font-family: var(--font-body); font-size: 1rem; font-weight: 500; color: var(--muted); letter-spacing: 0; margin-top: 6px; }
+.body > p { color: var(--muted); max-width: 66ch; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; align-items: start; }
+.built { margin: 0; padding: 0; list-style: none; display: grid; gap: 9px; font-size: .9375rem; }
+.built li { padding-left: 18px; position: relative; }
+.built li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 2px; background: var(--accent); }
+.built b { font-weight: 600; }
+
+/* Ürün kesitleri (örnek arayüz) */
+.shot { border: 1px solid var(--line); border-radius: 10px; background: var(--paper); padding: 14px; min-width: 0; }
+.shot-cap { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.scroll { overflow-x: auto; }
+
+.puantaj { border-collapse: collapse; width: 100%; font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.puantaj th, .puantaj td { padding: 6px 6px; text-align: center; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.puantaj th { font-family: var(--font-mono); font-weight: 500; font-size: .7rem; color: var(--muted); }
+.puantaj td:first-child, .puantaj th:first-child { text-align: left; }
+.puantaj td:last-child, .puantaj th:last-child { text-align: right; font-family: var(--font-mono); }
+.d { display: inline-block; width: 18px; height: 18px; line-height: 18px; border-radius: 4px; font-size: .68rem; font-weight: 600; }
+.d.t { background: var(--ok-soft); color: var(--ok); }
+.d.y { background: var(--signal-soft); color: var(--signal); }
+.d.x { background: transparent; color: var(--muted); border: 1px dashed var(--line); }
+
+.phone { max-width: 290px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 26px; padding: 18px 14px; display: grid; gap: 10px; }
+.phone-total { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 4px 8px; border-bottom: 1px solid var(--line); }
+.phone-total b { font-family: var(--font-display); font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.sub { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 4px; }
+.sub i { width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; font-style: normal; font-weight: 700; font-size: .8rem; color: #fff; }
+.sub span { font-weight: 600; font-size: .9rem; }
+.sub small { display: block; color: var(--muted); font-size: .75rem; font-weight: 400; }
+.sub em { font-style: normal; font-family: var(--font-mono); font-size: .8rem; text-align: right; }
+.sub em small { color: var(--ok); }
+.ai-note { font-size: .75rem; color: var(--muted); text-align: center; padding-top: 4px; }
+
+.seats { display: grid; gap: 5px; justify-items: center; }
+.screen { width: 80%; height: 6px; border-radius: 0 0 50% 50%; background: var(--accent); opacity: .5; margin-bottom: 10px; }
+.row { display: flex; gap: 5px; align-items: center; }
+.row .mono { width: 14px; color: var(--muted); font-size: .68rem; }
+.seat { width: 16px; height: 14px; border-radius: 4px 4px 2px 2px; background: var(--surface); border: 1px solid var(--line); }
+.seat.r { background: var(--line); border-color: var(--line); }
+.seat.s { background: var(--accent); border-color: var(--accent); }
+.gap { width: 10px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; margin-top: 10px; font-size: .75rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+
+.keys { display: grid; gap: 8px; }
+.key { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.key b { font-size: .9rem; }
+.key .mono { color: var(--muted); }
+.key .price { font-family: var(--font-mono); font-weight: 500; grid-row: span 2; }
+
+/* Yetenekler */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.skill { padding: 22px 22px 22px 0; display: grid; gap: 10px; align-content: start; }
+.skill + .skill { padding-left: 22px; border-left: 1px solid var(--line); }
+.skill h3 { font-size: 1.15rem; font-weight: 700; }
+.skill p { color: var(--muted); font-size: .9375rem; }
+
+/* İletişim */
+.contact { background: var(--ink); color: var(--paper); border-radius: 16px; padding: clamp(28px, 5vw, 52px); display: grid; gap: 22px; }
+.contact h2 { font-size: clamp(1.7rem, 3.6vw, 2.6rem); font-weight: 800; letter-spacing: -.02em; max-width: 20ch; }
+.contact p { opacity: .8; max-width: 55ch; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.addr { font-family: var(--font-mono); font-size: .95rem; padding: 10px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); user-select: all; overflow-wrap: anywhere; }
+.btn { font: 600 .9375rem var(--font-body); padding: 10px 16px; border-radius: 10px; border: 0; cursor: pointer; background: var(--paper); color: var(--ink); text-decoration: none; }
+.btn.ghost { background: transparent; color: var(--paper); border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent); }
+.btn:hover { opacity: .88; }
+
+footer { padding-block: 28px 40px; color: var(--muted); font-size: .875rem; }
+
+@media (max-width: 860px) {
+  .project { grid-template-columns: minmax(0, 1fr); }
+  .meta { border-right: 0; border-bottom: 1px solid var(--line); }
+  .meta dl { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .split { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .skill, .skill + .skill { padding: 20px 0; border-left: 0; }
+  .skill + .skill { border-top: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#">Muhammed <span>/ Mkochandev</span></a>
+    <nav class="nav" aria-label="Sayfa içi">
+      <a href="#projeler">Projeler</a>
+      <a href="#yetenekler">Yetenekler</a>
+      <a href="#iletisim">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap hero">
+    <span class="label">Full-stack geliştirici · Laravel · React Native · Node.js</span>
+    <h1>Şantiyede, kasada ve cepte <em>gerçekten kullanılan</em> yazılımlar.</h1>
+    <p class="lede">Küçük işletmelerin kâğıtta, Excel'de ya da akılda tuttuğu işleri web ve mobil uygulamaya dönüştürüyorum. Veritabanı tasarımından yönetim paneline, abonelik ve ödeme akışından tanıtım sitesine kadar ürünü uçtan uca kendim kuruyorum.</p>
+    <div class="facts">
+      <div class="fact"><b>1</b><span class="label">Canlıda SaaS</span></div>
+      <div class="fact"><b>4</b><span class="label">Uçtan uca ürün</span></div>
+      <div class="fact"><b>80+</b><span class="label">Commit, son 7 ay</span></div>
+      <div class="fact"><b>3</b><span class="label">Laravel sürümü (8 · 10 · 12)</span></div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="projeler">
+    <div class="section-head">
+      <h2>Projeler</h2>
+      <span class="label">Tamamlanan ve yayına yakın işler</span>
+    </div>
+
+    <div class="projects">
+
+      <!-- Gazi Ustam -->
+      <article class="project">
+        <div class="meta">
+          <span class="status live">Canlıda</span>
+          <dl>
+            <div><dt class="label">Tür</dt><dd>B2B SaaS + tanıtım sitesi</dd></div>
+            <div><dt class="label">Tarih</dt><dd class="mono">Tem – Ağu 2026</dd></div>
+            <div><dt class="label">Teknoloji</dt><dd class="chips"><span class="chip">Laravel 12</span><span class="chip">PHP 8.2</span><span class="chip">Tailwind</span><span class="chip">MySQL</span><span class="chip">Vite</span></dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://gaziustam.com/" target="_blank" rel="noopener">gaziustam.com ↗</a>
+            <a href="https://github.com/Mkochandev/stok-takip" target="_blank" rel="noopener">Panel kodu ↗</a>
+            <a href="https://github.com/Mkochandev/gaziustam-website" target="_blank" rel="noopener">Site kodu ↗</a>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Gazi Ustam<small>Usta takip ve şantiye yönetim programı</small></h3>
+          <p>İnşaat ve tadilat işlerinde ustaların puantajını, hakedişini ve iş bazlı kâr-zararı tutan çok kiracılı bir web uygulaması. Müşteri tanıtım sitesinden deneme talep eder, talep panele düşer, tek tıkla hesaba dönüşür.</p>
+          <div class="split">
+            <ul class="built">
+              <li><b>Puantaj ve devam kaydı:</b> günlük tam / yarım gün girişi, aylık hesap ekranı</li>
+              <li><b>Otomatik hakediş:</b> usta başına ödeme geçmişi, IBAN kaydı ve PDF hesap özeti</li>
+              <li><b>İş bazlı finans:</b> sözleşme tutarı, gelir, gider ve net kâr hesaplaması</li>
+              <li><b>Çok kiracılı yapı:</b> her firma kendi verisini görür; abonelik süresi dolunca erişim middleware ile kesilir</li>
+              <li><b>Yönetici paneli:</b> üye yönetimi, süre uzatma, kullanıcı bazlı yedek alma</li>
+              <li><b>Tanıtım sitesi:</b> SEO, sitemap, ziyaret analitiği ve panele webhook ile düşen müşteri talepleri</li>
+            </ul>
+            <figure class="shot" style="margin:0">
+              <div class="shot-cap"><span class="label">Puantaj · 1. hafta</span><span class="label">Örnek veri</span></div>
+              <div class="scroll">
+                <table class="puantaj">
+                  <thead><tr><th>Usta</th><th>Pt</th><th>Sa</th><th>Ça</th><th>Pe</th><th>Cu</th><th>Ct</th><th>Hakediş</th></tr></thead>
+                  <tbody>
+                    <tr><td>Ali K.</td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d y">Y</span></td><td><span class="d t">T</span></td><td><span class="d x">–</span></td><td>₺10.800</td></tr>
+                    <tr><td>Hasan D.</td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d x">–</span></td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d y">Y</span></td><td>₺10.800</td></tr>
+                    <tr><td>Mehmet A.</td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td><span class="d t">T</span></td><td>₺14.400</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="legend"><span><span class="d t">T</span> Tam gün</span><span><span class="d y">Y</span> Yarım gün</span><span>Günlük ₺2.400</span></div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- Abonelik Takip -->
+      <article class="project">
+        <div class="meta">
+          <span class="status near">Yayın öncesi</span>
+          <dl>
+            <div><dt class="label">Tür</dt><dd>iOS / Android uygulaması + API</dd></div>
+            <div><dt class="label">Tarih</dt><dd class="mono">Eyl 2026</dd></div>
+            <div><dt class="label">Teknoloji</dt><dd class="chips"><span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">RevenueCat</span><span class="chip">Claude API</span></dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://github.com/Mkochandev/abonelik-takip-app" target="_blank" rel="noopener">Kaynak kodu ↗</a>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Abonelik Takip<small>Dijital aboneliklerini tek ekranda gör</small></h3>
+          <p>Netflix, Spotify, YouTube Premium gibi aboneliklerin toplam aylık maliyetini gösteren mobil uygulama. Katalogdaki fiyatlar her gece yapay zekâ ile resmi sayfalardan okunup güncelleniyor; kullanıcı zam geldiğinde elle bir şey girmek zorunda kalmıyor.</p>
+          <div class="split">
+            <ul class="built">
+              <li><b>Gecelik fiyat tarayıcı:</b> node-cron ile 03:00'te sayfaları çekip Claude Haiku'dan güven puanlı JSON fiyat alan servis</li>
+              <li><b>Döviz kuru servisi:</b> dolar bazlı planları TL'ye çeviriyor</li>
+              <li><b>Freemium model:</b> ücretsiz planda 5 abonelik sınırı, RevenueCat ile premium satın alma ve webhook senkronu</li>
+              <li><b>Güvenli veri katmanı:</b> Supabase Auth, satır düzeyinde güvenlik (RLS) politikaları, 7 sürümlü SQL migration</li>
+              <li><b>Mobil arayüz:</b> özel sekme çubuğu, marka ikonları, paywall, gizlilik ve hesap silme akışları</li>
+              <li><b>Yönetim paneli:</b> katalog düzenleme ve elle fiyat taraması tetikleme</li>
+            </ul>
+            <figure class="shot" style="margin:0">
+              <div class="shot-cap"><span class="label">Ana ekran</span><span class="label">Örnek veri</span></div>
+              <div class="phone">
+                <div class="phone-total"><span class="label">Bu ay</span><b>₺1.183,97</b></div>
+                <div class="sub"><i style="background:#C11119">N</i><span>Netflix<small>Standart · her ayın 12'si</small></span><em>₺229,99<small>güncel</small></em></div>
+                <div class="sub"><i style="background:#1A9E4B">S</i><span>Spotify<small>Premium Bireysel · 3'ü</small></span><em>₺99,00<small>güncel</small></em></div>
+                <div class="sub"><i style="background:#CC1A1A">Y</i><span>YouTube Premium<small>Aile · 21'i</small></span><em>₺157,99<small>güncel</small></em></div>
+                <div class="sub"><i style="background:#1F4DB3">D</i><span>Disney+<small>Standart · 28'i</small></span><em>₺349,99<small>güncel</small></em></div>
+                <p class="ai-note">Fiyatlar her gece 03:00'te otomatik kontrol edilir</p>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- E-Pin Store -->
+      <article class="project">
+        <div class="meta">
+          <span class="status done">Tamamlandı</span>
+          <dl>
+            <div><dt class="label">Tür</dt><dd>E-ticaret sitesi + yönetim paneli</dd></div>
+            <div><dt class="label">Tarih</dt><dd class="mono">Şub – Mar 2026</dd></div>
+            <div><dt class="label">Teknoloji</dt><dd class="chips"><span class="chip">Laravel 8</span><span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">Blade</span></dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://github.com/Mkochandev/e-pin-store" target="_blank" rel="noopener">Kaynak kodu ↗</a>
+          </div>
+        </div>
+        <div class="body">
+          <h3>E-Pin Store<small>Dijital oyun kodu mağazası</small></h3>
+          <p>Oyun anahtarlarını platforma göre satan mağaza. Admin stoğa kod yükler, müşteri satın aldığında siparişe bir kod atanır ve profilindeki sipariş geçmişinde görünür.</p>
+          <div class="split">
+            <ul class="built">
+              <li><b>Katalog:</b> kategori, platform, oyun modu ve yaş sınırına göre filtrelenen mağaza</li>
+              <li><b>Anahtar stoğu:</b> oyun ve platform başına kod havuzu, satışta otomatik düşüm</li>
+              <li><b>Kullanıcı hesabı:</b> kayıt, giriş, istek listesi, sipariş geçmişi</li>
+              <li><b>İçerik yönetimi:</b> hakkımızda, iletişim ve sosyal medya bilgileri panelden düzenleniyor</li>
+              <li><b>14 tablo:</b> oyun ↔ kategori ve oyun ↔ mod çoka-çok ilişkileriyle</li>
+            </ul>
+            <figure class="shot" style="margin:0">
+              <div class="shot-cap"><span class="label">Siparişlerim</span><span class="label">Örnek veri</span></div>
+              <div class="keys">
+                <div class="key"><b>Elden Ring</b><span class="price">₺1.299</span><span class="mono">Steam · 7KQ4X-●●●●●-●●●●●</span></div>
+                <div class="key"><b>EA Sports FC 26</b><span class="price">₺1.899</span><span class="mono">PlayStation · 3MNR8-●●●●●-●●●●●</span></div>
+                <div class="key"><b>Minecraft</b><span class="price">₺799</span><span class="mono">PC · Q2W9T-●●●●●-●●●●●</span></div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+      <!-- Cinema Manager -->
+      <article class="project">
+        <div class="meta">
+          <span class="status near">Son aşamada</span>
+          <dl>
+            <div><dt class="label">Tür</dt><dd>Sinema bilet ve salon yönetimi</dd></div>
+            <div><dt class="label">Tarih</dt><dd class="mono">Mar 2026</dd></div>
+            <div><dt class="label">Teknoloji</dt><dd class="chips"><span class="chip">Laravel 10</span><span class="chip">PHP 8.1</span><span class="chip">MySQL</span><span class="chip">Blade</span></dd></div>
+          </dl>
+          <div class="links">
+            <a href="https://github.com/Mkochandev/cinema-manager" target="_blank" rel="noopener">Kaynak kodu ↗</a>
+          </div>
+        </div>
+        <div class="body">
+          <h3>Vault-Tec Sinema<small>Film, seans ve koltuk rezervasyonu</small></h3>
+          <p>Salonları, seansları ve koltuk düzenini yöneten bilet sistemi. Kullanıcı filmi seçer, seansı seçer, koltuk planından yerini alır; yönetici filmleri panelden ekler ve ana sayfaya bağlar.</p>
+          <div class="split">
+            <ul class="built">
+              <li><b>Veri modeli:</b> salon → koltuk, film → seans → bilet → rezerve koltuk ilişkileri</li>
+              <li><b>Koltuk seçimi:</b> dolu ve boş koltukları gösteren salon planı</li>
+              <li><b>Film modülü:</b> panelden eklenen filmler için dinamik detay sayfası</li>
+              <li><b>Altyapı:</b> Laravel 8'den 10'a yükseltilmiş taban, ayrı admin ve üye kimlik doğrulaması</li>
+            </ul>
+            <figure class="shot" style="margin:0">
+              <div class="shot-cap"><span class="label">Salon 2 · 20:30</span><span class="label">Örnek veri</span></div>
+              <div class="seats" aria-label="Örnek koltuk planı">
+                <div class="screen"></div>
+                <div class="row"><span class="mono">A</span><span class="seat r"></span><span class="seat r"></span><span class="seat"></span><span class="gap"></span><span class="seat"></span><span class="seat"></span><span class="seat r"></span><span class="seat"></span><span class="gap"></span><span class="seat"></span><span class="seat"></span><span class="seat"></span></div>
+                <div class="row"><span class="mono">B</span><span class="seat"></span><span class="seat r"></span><span class="seat r"></span><span class="gap"></span><span class="seat r"></span><span class="seat s"></span><span class="seat s"></span><span class="seat r"></span><span class="gap"></span><span class="seat"></span><span class="seat"></span><span class="seat r"></span></div>
+                <div class="row"><span class="mono">C</span><span class="seat"></span><span class="seat"></span><span class="seat"></span><span class="gap"></span><span class="seat r"></span><span class="seat r"></span><span class="seat r"></span><span class="seat r"></span><span class="gap"></span><span class="seat"></span><span class="seat r"></span><span class="seat"></span></div>
+                <div class="row"><span class="mono">D</span><span class="seat"></span><span class="seat"></span><span class="seat"></span><span class="gap"></span><span class="seat"></span><span class="seat"></span><span class="seat"></span><span class="seat"></span><span class="gap"></span><span class="seat"></span><span class="seat"></span><span class="seat"></span></div>
+                <div class="legend"><span><span class="seat"></span> Boş</span><span><span class="seat r"></span> Dolu</span><span><span class="seat s"></span> Seçilen</span></div>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="wrap section" id="yetenekler">
+    <div class="section-head">
+      <h2>Yetenekler</h2>
+      <span class="label">Projelerde kullandıklarım</span>
+    </div>
+    <div class="skills">
+      <div class="skill">
+        <span class="label">Backend</span>
+        <h3>Laravel ve Node.js</h3>
+        <p>Laravel 8, 10 ve 12 ile MVC uygulamalar, Breeze kimlik doğrulama, middleware ile rol ve abonelik kontrolü, Eloquent ilişkileri. Express ile REST API, cron işleri, webhook alıcıları.</p>
+        <div class="chips"><span class="chip">PHP 8</span><span class="chip">Laravel</span><span class="chip">Express</span><span class="chip">REST</span><span class="chip">node-cron</span></div>
+      </div>
+      <div class="skill">
+        <span class="label">Veri</span>
+        <h3>İlişkisel veritabanı</h3>
+        <p>Çoka-çok ilişkiler, çok kiracılı şema, sürümlü migration'lar, PostgreSQL satır düzeyinde güvenlik politikaları, yedekleme akışları.</p>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">RLS</span></div>
+      </div>
+      <div class="skill">
+        <span class="label">Arayüz ve mobil</span>
+        <h3>Web ve React Native</h3>
+        <p>Blade ve Tailwind ile yönetim panelleri ve SEO uyumlu tanıtım siteleri. Expo ile iOS ve Android uygulaması, uygulama içi satın alma, yapay zekâ API entegrasyonu.</p>
+        <div class="chips"><span class="chip">Blade</span><span class="chip">Tailwind</span><span class="chip">Expo</span><span class="chip">React Native</span><span class="chip">RevenueCat</span><span class="chip">Claude API</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="iletisim">
+    <div class="contact">
+      <span class="label" style="color:inherit;opacity:.7">İletişim</span>
+      <h2>İşletmeniz için bir panel ya da uygulama mı lazım?</h2>
+      <p>Freelance projelere, yarı zamanlı ve tam zamanlı pozisyonlara açığım. Kısaca ne yapmak istediğinizi yazmanız yeterli.</p>
+      <div class="contact-row">
+        <span class="addr" id="mail">muhammedkochandev@gmail.com</span>
+        <button class="btn" id="copy" type="button">E-postayı kopyala</button>
+        <a class="btn ghost" href="https://github.com/Mkochandev" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">© 2026 Muhammed · Bu sayfadaki arayüz kesitleri örnek veriyle hazırlanmıştır.</footer>
+
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var btn = this, text = document.getElementById('mail').textContent;
+  function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = 'E-postayı kopyala'; }, 1800); }
+  function fallback() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('mail'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Seçildi, Ctrl+C ile kopyala');
+  }
+  try { navigator.clipboard.writeText(text).then(function () { done('Kopyalandı'); }, fallback); } catch (e) { fallback(); }
+});
+</script>
+</body>
+</html>
