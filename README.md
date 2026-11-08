@@ -21,4 +21,4 @@ python -m http.server 8000
 - `assets/sculpture.webp`: bu portföy için üretilen soyut metal/cam görseli.
 - Proje görselleri Erişte ve GaziUstam’ın kendi public repolarından gelir. Kaynak kodu ve site bağlantıları ayrı tutulur.
 
-Hareket azaltma tercihi desteklenir. JavaScript kapalıyken içerikler ve bağlantılar erişilebilir kalır. Scribble — Streetwear yayındadır. Dikey editoryal görsel, proje açıklaması, canlı deneyim ve kaynak kodu bağlantılarıyla sunulur. Konsept mağazada gerçek ödeme yapılmaz. Film karesi SNORES referansından gelir; orijinal kaynaklar Streetwear sitesindeki Referanslar sayfasında belirtilir.
+Hareket azaltma tercihi desteklenir. JavaScript kapalıyken içerikler ve bağlantılar erişilebilir kalır. Scribble — Streetwear yayındadır. Scribble kimliğinde kompakt bir tipografik kart, kısa proje açıklaması ve ayrı canlı deneyim / kaynak kodu bağlantılarıyla sunulur. Konsept mağazada gerçek ödeme yapılmaz. Projenin görsel kaynakları Streetwear sitesindeki Referanslar sayfasında belirtilir.
