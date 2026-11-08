@@ -33,35 +33,29 @@
 @media(min-width:1800px){.worlds{max-width:1800px;margin:auto}}
 @media(max-width:900px){.world-feature{gap:32px}.world-kicker{font-size:9px}.world-description{font-size:12px}.world-copy h3{font-size:25px}}
 @media(max-width:650px){.worlds{padding:10px 15px 20px}.world-feature{grid-template-columns:1fr;gap:25px;padding:25px 0 30px}.world-brand{max-width:460px}.world-copy{padding:0 2px}.world-kicker{margin-bottom:15px}.world-copy h3{font-size:25px}.world-description{font-size:13px}.world-actions{margin-top:20px}.worlds+.works{padding-top:35px}}
+
+.editions{padding:20px 35px 60px;max-width:1800px;margin:auto}.edition-project{display:grid;grid-template-columns:minmax(0,.38fr) minmax(0,1fr);gap:65px;align-items:center;padding:42px 0;border-bottom:1px solid var(--line)}.edition-category{font-size:10px;color:var(--muted)}.edition-info h3{font:400 clamp(100px,13vw,220px)/1 var(--display);letter-spacing:-.09em;margin:25px 0 35px}.edition-info h3 a:hover{color:var(--acid)}.edition-links{display:flex;gap:26px;font-size:12px}.edition-links a{border-bottom:1px solid #ffffff50;padding-bottom:8px}.edition-links a:first-child{color:var(--acid);border-color:#a4ff0060}.edition-cover{position:relative;display:block;overflow:hidden;background:#080b08;aspect-ratio:3/2}.edition-cover img{width:100%;height:100%;object-fit:cover;transition:transform .7s}.edition-cover:hover img{transform:scale(1.025)}.edition-visit{position:absolute;right:22px;bottom:20px;font-size:28px;color:var(--acid)}.concept{padding-bottom:70px}.concept-body p{font-size:15px;margin-top:22px}.footer{padding-top:15px}.footer-bottom{margin-top:0}
+@media(max-width:900px){.edition-project{gap:30px;grid-template-columns:minmax(0,.32fr) minmax(0,1fr)}.edition-info h3{font-size:110px}}
+@media(max-width:650px){.editions{padding:10px 15px 35px}.edition-project{grid-template-columns:1fr;gap:22px;padding:28px 0}.edition-info{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px}.edition-category{grid-column:1/-1;font-size:9px}.edition-info h3{font-size:80px;margin:0}.edition-links{gap:20px;font-size:11px}.edition-cover{width:100%;aspect-ratio:3/2}.edition-visit{right:15px;bottom:12px;font-size:24px}.concept{padding-bottom:45px}}
 </style>
 </head>
 <body>
-<a class="skip" href="#isler">İşlere geç</a>
+<a class="skip" href="#projeler">Projelere geç</a>
 <div class="shell">
-<header class="nav"><a href="#baslangic" class="identity" aria-label="Scribble, başlangıç">scribble<span class="tiny">↗</span></a><nav class="navlinks" aria-label="Ana menü"><a href="#scribble-nedir" class="nav-scribble">SCRIBBLE NEDİR?</a><a href="#isler">DİĞER İŞLER</a><a href="https://github.com/Mkochandev" class="contact-nav">GITHUB ↗</a></nav></header>
+<header class="nav"><a href="#baslangic" class="identity" aria-label="Scribble, başlangıç">scribble<span class="tiny">↗</span></a><nav class="navlinks" aria-label="Ana menü"><a href="#scribble-nedir" class="nav-scribble">SCRIBBLE</a><a href="#projeler">PROJELER</a><a href="https://github.com/scribble-worlds" class="contact-nav">GITHUB ↗</a></nav></header>
 <main>
 <section class="hero" id="baslangic" aria-labelledby="hero-title">
 <img class="hero-art" src="assets/sculpture-lime.webp" width="1536" height="1024" alt="" fetchpriority="high">
 <div class="hero-brand" id="scribble"><img src="assets/scribble-symbol.svg" width="112" height="112" alt="" class="hero-symbol"><h1 id="hero-title">scribble</h1></div>
 <div class="hero-foot"><p class="sub">tek marka.<br>farklı dünyalar.</p><a class="hero-search mono" href="https://github.com/scribble-worlds" target="_blank" rel="noopener">Scribble’ı keşfet ↗</a><a class="circle-link" href="#scribble-nedir" aria-label="Scribble’ı keşfet">↓</a></div>
 </section>
-<section class="concept" id="scribble-nedir" aria-labelledby="concept-title">
-<div class="concept-label mono">WHAT IS SCRIBBLE?</div>
-<div class="concept-body"><h2 id="concept-title">Aynı isim.<br><span>Bambaşka dünyalar.</span></h2>
-<p>Scribble, tek bir markayı farklı sektörlerde yeniden hayal ettiğim tasarım ve geliştirme projesi. Her repoda Scribble, o sektörün gerçek bir markasıymış gibi ele alınıyor.</p>
-<p>Logo aynı kalıyor. Görsel dil, içerik ve deneyim ise her dünyanın kendi karakterine göre şekilleniyor. Bugün bir streetwear markası; sıradaki projede bambaşka bir iş. Her yeni repo, bu markanın başka bir ihtimalini keşfediyor.</p>
-<div class="concept-rule mono"><span>TEK MARKA</span><span>AYNI LOGO</span><span>HER REPODA YENİ BİR DÜNYA</span></div>
-</div>
-</section>
-<section class="works" id="isler" aria-labelledby="works-title">
-<div class="section-bar"><h2 id="works-title">Diğer projelerim</h2><span class="mono">TASARIM &amp; GELİŞTİRME</span></div>
-<div class="project-list">
-<article class="project-compact reveal"><a class="project-icon" href="https://eriste.app/" target="_blank" rel="noopener" aria-label="Erişte sitesini aç"><img src="https://raw.githubusercontent.com/Mkochandev/eriste-web/main/public/brand/icon-192.png" width="64" height="64" alt="Erişte ikonu" loading="lazy"></a><div class="project-info"><h3>Erişte</h3><p>Aboneliklerin ve düzenli giderlerin tek yerde.</p><div class="work-links"><a href="https://eriste.app/" target="_blank" rel="noopener">Siteyi aç ↗</a><a href="https://github.com/Mkochandev/eriste-web" target="_blank" rel="noopener">Kaynak kodu ↗</a></div></div></article>
-<article class="project-compact reveal"><a class="project-icon" href="https://gaziustam.com/" target="_blank" rel="noopener" aria-label="GaziUstam sitesini aç"><img src="https://raw.githubusercontent.com/Mkochandev/Gaziustam-Yazilim/main/cloudflare/public/favicon.svg" width="64" height="64" alt="GaziUstam ikonu" loading="lazy"></a><div class="project-info"><h3>GaziUstam</h3><p>Web, mobil uygulama ve yazılım danışmanlığı.</p><div class="work-links"><a href="https://gaziustam.com/" target="_blank" rel="noopener">Siteyi aç ↗</a><a href="https://github.com/Mkochandev/Gaziustam-Yazilim" target="_blank" rel="noopener">Kaynak kodu ↗</a></div></div></article>
-</div>
+<section class="concept" id="scribble-nedir" aria-labelledby="concept-title"><div class="concept-label mono">SCRIBBLE</div><div class="concept-body"><h2 id="concept-title">Aynı isim.<br><span>Yeni dünyalar.</span></h2><p>Her defasında başka bir ihtimal.</p></div></section>
+<section class="editions" id="projeler" aria-labelledby="editions-title">
+<div class="section-bar"><h2 id="editions-title">Dünyalar</h2><span class="mono">001 —</span></div>
+<article class="edition-project" id="001"><div class="edition-info"><span class="mono edition-category">SOKAK GİYİMİ / 2026</span><h3><a href="https://scribble-worlds.github.io/scribble-streetwear/" target="_blank" rel="noopener">001</a></h3><div class="edition-links"><a href="https://scribble-worlds.github.io/scribble-streetwear/" target="_blank" rel="noopener">Keşfet ↗</a><a href="https://github.com/scribble-worlds/scribble-streetwear" target="_blank" rel="noopener">Kod ↗</a></div></div><a class="edition-cover" href="https://scribble-worlds.github.io/scribble-streetwear/" target="_blank" rel="noopener" aria-label="001 — Sokak giyimi dünyasını keşfet"><img src="assets/001-cover.webp" width="1536" height="1024" alt="001 — krom askıda siyah kumaş ve Scribble etiketleri" loading="lazy"><span class="edition-visit" aria-hidden="true">↗</span></a></article>
 </section>
 </main>
-<footer class="footer" id="iletisim"><div class="footer-top"><h2><a href="https://github.com/Mkochandev">Bir iz bırakalım ↗</a></h2><a class="mail" href="https://github.com/Mkochandev">GitHub ↗</a></div><div class="footer-bottom"><a href="#baslangic" class="footer-stamp">muham²ed</a><span class="mono">© <span id="year">2026</span> / TASARIM × KOD</span><nav aria-label="Alt menü"><a href="https://github.com/Mkochandev" target="_blank" rel="noopener">GitHub ↗</a><a href="assets/scribble-logo.svg" target="_blank" rel="noopener">Scribble logosu ↗</a><a href="#baslangic">Yukarı ↑</a></nav></div></footer>
+<footer class="footer" id="iletisim"><div class="footer-bottom"><a href="#baslangic" class="footer-stamp">scribble</a><span class="mono">© <span id="year">2026</span></span><nav aria-label="Alt menü"><a href="https://github.com/scribble-worlds" target="_blank" rel="noopener">GitHub ↗</a><a href="https://github.com/Mkochandev" target="_blank" rel="noopener">muham²ed ↗</a><a href="#baslangic">Yukarı ↑</a></nav></div></footer>
 </div>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();

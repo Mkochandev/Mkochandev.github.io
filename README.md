@@ -1,24 +1,14 @@
-# muham²ed — tasarım × kod
+# Scribble
 
-[Portföyü aç](https://mkochandev.github.io/) · [GitHub profili](https://github.com/Mkochandev)
+Tek marka. Farklı dünyalar.
 
-Erişte, GaziUstam ve Scribble için görsel bir seçki. Türkçe, tek sayfalık, mobil uyumlu portföy. HTML, CSS ve küçük bir JavaScript katmanıyla çalışır; derleme veya veritabanı gerektirmez.
+[Site](https://mkochandev.github.io/) · [Organizasyon](https://github.com/scribble-worlds)
 
-## Yerelde
+Statik HTML/CSS/JavaScript. `index.html` ve `assets/` GitHub Pages üzerinden sunulur. Projeler `#projeler` bölümünde numaralı bir liste olarak yer alır. Yeni proje için `edition-project` yapısına yeni bir kayıt eklenir.
 
-```bash
-python -m http.server 8000
-```
+## Görseller
 
-`http://localhost:8000` adresini açın. GitHub Pages, `main` dalının kök dizininden yayınlanır.
+`assets/sculpture-lime.webp`: Scribble için üretilen lime/krom arka plan.
+`assets/001-cover.webp`: 001 için üretilmiş kapak; dış tipografi kaldırılmıştır, fiziksel SCRIBBLE etiketleri korunur. Kaynak çözünürlük 1536 × 1024.
 
-## Görsel kimlik
-
-- İsim: **muham²ed**
-- Renkler: `#111410`, `#eeeee5`, `#a4ff00`
-- Tipografi: Space Grotesk / Manrope (Google Fonts)
-- Scribble: tek çizgiden oluşan özgün S simgesi; `assets/scribble-symbol.svg` ve `assets/scribble-logo.svg`
-- `assets/sculpture-lime.webp`: bu portföy için üretilen soyut metal/cam görseli.
-- Proje görselleri Erişte ve GaziUstam’ın kendi public repolarından gelir. Kaynak kodu ve site bağlantıları ayrı tutulur.
-
-Hareket azaltma tercihi desteklenir. JavaScript kapalıyken içerikler ve bağlantılar erişilebilir kalır. Scribble projeleri [scribble-worlds](https://github.com/scribble-worlds) organizasyonunda toplanır. Ana renk `#a4ff00`; ana sayfanın açılışındaki bağlantı organizasyona açılır. Tekrarlayan seri kartı kaldırılmıştır.
+Ana renk: #A4FF00. Ortak logo korunur; her proje kendi dünyasında farklı bir tasarım dili kullanır.
