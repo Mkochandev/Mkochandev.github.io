@@ -6,6 +6,10 @@ Tek marka. Farklı dünyalar.
 
 Statik HTML/CSS/JavaScript. `index.html` ve `assets/` GitHub Pages üzerinden sunulur. Projeler `#projeler` bölümünde numaralı bir liste olarak yer alır. Yeni proje için `edition-project` yapısına yeni bir kayıt eklenir.
 
+## Projeler
+
+**001** — Streetwear giyim markası konseptinde bir web tasarımı.
+
 ## Görseller
 
 `assets/sculpture-lime.webp`: Scribble için üretilen lime/krom arka plan.
